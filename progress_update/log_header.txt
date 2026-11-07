@@ -1,0 +1,41 @@
+<start>
+push rbp: save base pointer
+mov rbp,rsp: copy current stack pointer to base pointer
+
+push r15,r14, r12, rbx: make space on stack (4 x 8 bytes)
+
+sub rsp: move stack pointer 0x230 further(away from already saved space)
+
+mov:arg1=rdi,arg2=rsi,arg3=rdx ...
+
+DWORD PTR [rbp-0x28],0x0= memory access 0x28 below rbp = put 0
+DWORD = 4 bytes
+lea = load effective address
+can use rdx again because value was put in edi
+
+<getsockname,ntop>
+test eax,eax = and compare, 0 is success
+jne/je to eax,0xffffffff = return -1
+
+<also memset>
+xor esi, esi = set esi to zero
+
+<sprintf>
+call to build string(passes arg)
+can contain problems (no max input length BOF)
+No je/jne
+
+<puts>
+call puts = print output+ new line
+No je/jne
+
+<fopen>
+needs 2 arg
+return pointer to file, save in rax
+can contain problems
+
+<fprintf>
+No je/jne
+
+<fclose>
+No je/jne
